@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AC.Suafigurinha.IO.Domain.Core\AC.Suafigurinha.IO.Domain.Core.csproj" />
+    <ProjectReference Include="..\AC.Suafigurinha.IO.Domain\AC.Suafigurinha.IO.Domain.csproj" />
+    <ProjectReference Include="..\AC.Suafigurinha.IO.Infra.CrossCutting.AspNetFilters\AC.Suafigurinha.IO.Infra.CrossCutting.AspNetFilters.csproj" />
+    <ProjectReference Include="..\AC.Suafigurinha.IO.Infra.CrossCutting.Bus\AC.Suafigurinha.IO.Infra.CrossCutting.Bus.csproj" />
+    <ProjectReference Include="..\AC.Suafigurinha.IO.Infra.CrossCutting.Identity\AC.Suafigurinha.IO.Infra.CrossCutting.Identity.csproj" />
+    <ProjectReference Include="..\AC.Suafigurinha.IO.Infra.Data\AC.Suafigurinha.IO.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>
