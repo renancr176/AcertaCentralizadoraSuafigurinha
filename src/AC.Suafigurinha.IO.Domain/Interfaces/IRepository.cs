@@ -8,12 +8,12 @@ namespace AC.Suafigurinha.IO.Domain.Interfaces
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : Entity<TEntity>
     {
-        void Adicionar(TEntity obj);
-        TEntity ObterPorId(Guid id);
-        IEnumerable<TEntity> ObterTodos();
-        void Atualizar(TEntity obj);
-        void Remover(Guid id);
-        IEnumerable<TEntity> Buscar(Expression<Func<TEntity, bool>> predicate);
+        void Insert(TEntity obj);
+        TEntity GetById(Guid id);
+        IEnumerable<TEntity> GetAll();
+        void Update(TEntity obj);
+        void Delete(Guid id);
+        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
         int SaveChanges();
     }
 }

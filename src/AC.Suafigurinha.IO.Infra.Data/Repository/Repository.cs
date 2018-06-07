@@ -20,32 +20,32 @@ namespace AC.Suafigurinha.IO.Infra.Data.Repository
             DbSet = Db.Set<TEntity>();
         }
 
-        public virtual void Adicionar(TEntity obj)
+        public virtual void Insert(TEntity obj)
         {
             DbSet.Add(obj);
         }
 
-        public virtual void Atualizar(TEntity obj)
+        public virtual void Update(TEntity obj)
         {
             DbSet.Update(obj);
         }
 
-        public virtual IEnumerable<TEntity> Buscar(Expression<Func<TEntity, bool>> predicate)
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return DbSet.AsNoTracking().Where(predicate);
         }
 
-        public virtual TEntity ObterPorId(Guid id)
+        public virtual TEntity GetById(Guid id)
         {
             return DbSet.AsNoTracking().FirstOrDefault(t => t.Id == id);
         }
 
-        public virtual IEnumerable<TEntity> ObterTodos()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return DbSet.ToList();
         }
 
-        public virtual void Remover(Guid id)
+        public virtual void Delete(Guid id)
         {
             DbSet.Remove(DbSet.Find(id));
         }
