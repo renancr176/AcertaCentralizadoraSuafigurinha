@@ -13,7 +13,7 @@ namespace AC.Suafigurinha.IO.Domain.Core.Models
 
         public Guid Id { get; protected set; }
 
-        public abstract bool EhValido();
+        public abstract bool IsValid();
         public ValidationResult ValidationResult { get; protected set; }
 
         public override bool Equals(object obj)

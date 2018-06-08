@@ -19,7 +19,7 @@ namespace AC.Suafigurinha.IO.Domain.CommandHandlers
             _notifications = notifications;
         }
 
-        protected void NotificarValidacoesErro(ValidationResult validationResult)
+        protected void AlertValidationsError(ValidationResult validationResult)
         {
             foreach (var error in validationResult.Errors)
             {

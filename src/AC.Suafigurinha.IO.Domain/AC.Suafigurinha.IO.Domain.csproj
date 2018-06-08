@@ -10,7 +10,9 @@
 
   <ItemGroup>
     <Folder Include="Admin\" />
-    <Folder Include="Cliente\" />
+    <Folder Include="Client\" />
+    <Folder Include="Gallery\" />
+    <Folder Include="Product\" />
   </ItemGroup>
 
 </Project>
