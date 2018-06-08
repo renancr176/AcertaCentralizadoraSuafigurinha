@@ -9,9 +9,9 @@ namespace AC.Suafigurinha.IO.Domain.Galleries.Events
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }
-        public virtual List<Image> Images { get; private set; }
+        public virtual IEnumerable<Guid> Images { get; private set; }
 
-        public GalleryRegistredEvent(Guid id, string name, List<Image> images)
+        public GalleryRegistredEvent(Guid id, string name, IEnumerable<Guid> images)
         {
             Id = id;
             Name = name;

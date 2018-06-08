@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AC.Suafigurinha.IO.Domain.Core.Models;
 using AC.Suafigurinha.IO.Domain.Images;
 using FluentValidation;
@@ -9,12 +10,32 @@ namespace AC.Suafigurinha.IO.Domain.Galleries
     public class Gallery : Entity<Gallery>
     {
         public string Name { get; private set; }
+        public IEnumerable<Guid?> IdImages { get; private set; }
+
+        // EF propriedades de navegacao
         public virtual List<Image> Images { get; private set; }
 
-        public Gallery(string name, List<Image> images)
+        public Gallery(string name, IEnumerable<Guid?> idImages)
         {
             Id = Guid.NewGuid();
             Name = name;
+            if (!idImages.Where(i => !i.HasValue).Any())
+                IdImages = idImages;
+            else
+                IdImages = new List<Guid?>();
+        }
+
+        protected Gallery() { }
+
+        public void AddIdImages(List<Guid?> idImages)
+        {
+            if (idImages.Where(i => !i.HasValue).Any()) return;
+            IdImages = idImages;
+        }
+
+        public void AddImages(List<Image> images)
+        {
+            if (images.Where(i => !i.IsValid()).Any()) return;
             Images = images;
         }
 
@@ -38,7 +59,12 @@ namespace AC.Suafigurinha.IO.Domain.Galleries
                 .NotEmpty().WithMessage("O nome da galeria deve ser informada.")
                 .Length(10, 255).WithMessage("O nome da galeria deve ser ter entre 10 a 255 caracteres.");
         }
-
+        private void ValidateImages()
+        {
+            RuleFor(c => c.Name)
+                .NotEmpty().WithMessage("O nome da galeria deve ser informada.")
+                .Length(10, 255).WithMessage("O nome da galeria deve ser ter entre 10 a 255 caracteres.");
+        }
         #endregion Validations
     }
 }
