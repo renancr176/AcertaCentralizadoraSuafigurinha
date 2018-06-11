@@ -16,6 +16,7 @@ namespace AC.Suafigurinha.IO.Domain.Images
             Id = Guid.NewGuid();
             Url = url;
             Order = order;
+            Deleted = false;
         }
 
         protected Image() { }

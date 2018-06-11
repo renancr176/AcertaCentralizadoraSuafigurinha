@@ -8,6 +8,7 @@ namespace AC.Suafigurinha.IO.Domain.Products.Commands
         public Guid Id { get; protected set; }
         public string Name { get; protected set; }
         public decimal Price { get; protected set; }
+        public bool HaveQuantity { get; protected set; }
         public int Quantity { get; protected set; }
         public string ShortDescription { get; protected set; }
         public string Description { get; protected set; }

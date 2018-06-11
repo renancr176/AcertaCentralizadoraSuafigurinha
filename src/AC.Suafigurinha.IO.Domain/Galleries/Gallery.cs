@@ -24,6 +24,7 @@ namespace AC.Suafigurinha.IO.Domain.Galleries
                 IdImages = idImages;
             else
                 IdImages = new List<Guid?>();
+            Deleted = false;
         }
 
         protected Gallery() { }
