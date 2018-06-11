@@ -12,7 +12,7 @@ using System.Text;
 
 namespace AC.Suafigurinha.IO.Domain.Products.Commands
 {
-    public class ProductCommandHandler : CommandHandler, IHandler<RegisterProductCommand>
+    public class ProductCommandHandler : CommandHandler, IHandler<InsertProductCommand>
     {
         public readonly IBus _bus;
         public readonly IProductRepository _productRepository;
@@ -24,7 +24,7 @@ namespace AC.Suafigurinha.IO.Domain.Products.Commands
             _productRepository = productRepository;
         }
 
-        public void Handle(RegisterProductCommand message)
+        public void Handle(InsertProductCommand message)
         {
             var product = Product.ProductFactory.NewFullProduct(message.Id, message.Name, message.Price, message.Quantity, message.ShortDescription, message.Description, message.IdImage, message.IdGalery);
 
@@ -49,7 +49,7 @@ namespace AC.Suafigurinha.IO.Domain.Products.Commands
 
             if (Commit())
             {
-                _bus.RaiseEvent(new ProductRegistredEvent(product.Id, product.Name, product.Price, product.Quantity, product.ShortDescription, product.Description, product.IdImage, product.IdGalery));
+                _bus.RaiseEvent(new ProductInsertedEvent(product.Id, product.Name, product.Price, product.Quantity, product.ShortDescription, product.Description, product.IdImage, product.IdGalery));
             }
         }
     }

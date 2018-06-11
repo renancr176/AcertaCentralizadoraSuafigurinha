@@ -2,9 +2,9 @@
 
 namespace AC.Suafigurinha.IO.Domain.Products.Events
 {
-    public class ProductEventHandler : IHandler<ProductRegistredEvent>
+    public class ProductEventHandler : IHandler<ProductInsertedEvent>
     {
-        public void Handle(ProductRegistredEvent message)
+        public void Handle(ProductInsertedEvent message)
         {
             // TODO: Ação posterior ao insert?
         }

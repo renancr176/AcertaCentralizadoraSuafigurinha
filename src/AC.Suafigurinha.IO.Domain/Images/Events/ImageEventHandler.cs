@@ -2,9 +2,9 @@
 
 namespace AC.Suafigurinha.IO.Domain.Images.Events
 {
-    public class ImageEventHandler : IHandler<ImageRegistredEvent>
+    public class ImageEventHandler : IHandler<ImageInsertedEvent>
     {
-        public void Handle(ImageRegistredEvent message)
+        public void Handle(ImageInsertedEvent message)
         {
             // TODO: Ação posterior ao insert?
         }

@@ -9,7 +9,7 @@ using AC.Suafigurinha.IO.Domain.Galleries.Events;
 
 namespace AC.Suafigurinha.IO.Domain.Galleries.Commands
 {
-    public class GalleryCommandHandler : CommandHandler, IHandler<RegisterGalleryCommand>
+    public class GalleryCommandHandler : CommandHandler, IHandler<InsertGalleryCommand>
     {
         private readonly IBus _bus;
         private readonly IGalleryRepository _galleryRepository;
@@ -21,7 +21,7 @@ namespace AC.Suafigurinha.IO.Domain.Galleries.Commands
             _galleryRepository = galleryRepository;
         }
 
-        public void Handle(RegisterGalleryCommand message)
+        public void Handle(InsertGalleryCommand message)
         {
             var gallery = new Gallery(message.Name, message.Images);
 
@@ -39,7 +39,7 @@ namespace AC.Suafigurinha.IO.Domain.Galleries.Commands
 
             if (Commit())
             {
-                _bus.RaiseEvent(new GalleryRegistredEvent(gallery.Id, gallery.Name, gallery.Images));
+                _bus.RaiseEvent(new GalleryInsertedEvent(gallery.Id, gallery.Name, gallery.Images));
             }
         }
     }

@@ -10,7 +10,7 @@ using AC.Suafigurinha.IO.Domain.Interfaces;
 
 namespace AC.Suafigurinha.IO.Domain.Images.Commands
 {
-    public class ImageCommandHandler : CommandHandler, IHandler<RegisterImageCommand>
+    public class ImageCommandHandler : CommandHandler, IHandler<InsertImageCommand>
     {
         private readonly IBus _bus;
         private readonly IImageRepository _imageRepository;
@@ -22,7 +22,7 @@ namespace AC.Suafigurinha.IO.Domain.Images.Commands
             _imageRepository = imageRepository;
         }
 
-        public void Handle(RegisterImageCommand message)
+        public void Handle(InsertImageCommand message)
         {
             var image = Image.ImageFactory.NewFullImage(message.Id, message.Url, message.Order, message.IdGalery);
 
@@ -47,7 +47,7 @@ namespace AC.Suafigurinha.IO.Domain.Images.Commands
 
             if (Commit())
             {
-                _bus.RaiseEvent(new ImageRegistredEvent(image.Id, image.Url, image.Order));
+                _bus.RaiseEvent(new ImageInsertedEvent(image.Id, image.Url, image.Order));
             }
         }
     }
