@@ -8,7 +8,8 @@ namespace AC.Suafigurinha.IO.Domain.Images
     {
         public string Url { get; private set; }
         public int Order { get; private set; }
-        public Guid? IdGalery { get; private set; }
+        public Guid? IdGallery { get; private set; }
+        public bool Deleted { get; private set; }
 
         public Image(string url, int order)
         {
@@ -18,6 +19,12 @@ namespace AC.Suafigurinha.IO.Domain.Images
         }
 
         protected Image() { }
+
+        public void ImageDeleted()
+        {
+            //TODO: Validar se usuário tem permissão
+            Deleted = true;
+        }
 
         #region Validations
         public override bool IsValid()
@@ -57,7 +64,7 @@ namespace AC.Suafigurinha.IO.Domain.Images
                 };
 
                 if (idGalery.HasValue)
-                    image.IdGalery = idGalery.Value;
+                    image.IdGallery = idGalery.Value;
 
                 return image;
             }

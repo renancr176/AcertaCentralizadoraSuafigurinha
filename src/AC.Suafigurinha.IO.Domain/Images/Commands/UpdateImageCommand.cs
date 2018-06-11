@@ -2,9 +2,9 @@
 
 namespace AC.Suafigurinha.IO.Domain.Images.Commands
 {
-    public class InsertImageCommand : BaseImageCommand
+    public class UpdateImageCommand : BaseImageCommand
     {
-        public InsertImageCommand(Guid id, string url, int order, Guid? idGalery)
+        public UpdateImageCommand(Guid id, string url, int order, Guid? idGalery)
         {
             Id = id;
             Url = url;

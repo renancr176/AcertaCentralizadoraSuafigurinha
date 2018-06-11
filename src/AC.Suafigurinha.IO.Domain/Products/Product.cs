@@ -28,6 +28,7 @@ namespace AC.Suafigurinha.IO.Domain.Products
         public string Description { get; private set; }
         public Guid? IdImage { get; private set; }
         public Guid? IdGalery { get; private set; }
+        public bool Deleted { get; private set; }
 
         // EF propriedades de navegacao
         public virtual Image ThumbNail { get; private set; }
@@ -43,6 +44,11 @@ namespace AC.Suafigurinha.IO.Domain.Products
         {
             if (gallery.IsValid()) return;
             Gallery = gallery;
+        }
+
+        public void ProductDeleted()
+        {
+            Deleted = true;
         }
 
         #region Validation

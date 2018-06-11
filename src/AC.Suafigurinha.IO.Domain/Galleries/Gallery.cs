@@ -11,6 +11,7 @@ namespace AC.Suafigurinha.IO.Domain.Galleries
     {
         public string Name { get; private set; }
         public IEnumerable<Guid?> IdImages { get; private set; }
+        public bool Deleted { get; private set; }
 
         // EF propriedades de navegacao
         public virtual List<Image> Images { get; private set; }
@@ -26,6 +27,11 @@ namespace AC.Suafigurinha.IO.Domain.Galleries
         }
 
         protected Gallery() { }
+
+        public void GalleryDeleted()
+        {
+            Deleted = true;
+        }
 
         public void AddIdImages(List<Guid?> idImages)
         {
@@ -66,5 +72,20 @@ namespace AC.Suafigurinha.IO.Domain.Galleries
                 .Length(10, 255).WithMessage("O nome da galeria deve ser ter entre 10 a 255 caracteres.");
         }
         #endregion Validations
+
+        public static class GalleryFactory
+        {
+            public static Gallery NewFullGallery(Guid id, string name, IEnumerable<Guid?> idImage)
+            {
+                var gallery = new Gallery()
+                {
+                    Id = id,
+                    Name = name,
+                    IdImages = idImage
+                };
+
+                return gallery;
+            }
+        }
     }
 }

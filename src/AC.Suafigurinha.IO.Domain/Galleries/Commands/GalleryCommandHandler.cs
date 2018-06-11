@@ -9,7 +9,11 @@ using AC.Suafigurinha.IO.Domain.Galleries.Events;
 
 namespace AC.Suafigurinha.IO.Domain.Galleries.Commands
 {
-    public class GalleryCommandHandler : CommandHandler, IHandler<InsertGalleryCommand>
+    public class GalleryCommandHandler : 
+        CommandHandler, 
+        IHandler<InsertGalleryCommand>,
+        IHandler<UpdateGalleryCommand>,
+        IHandler<DeleteGalleryCommand>
     {
         private readonly IBus _bus;
         private readonly IGalleryRepository _galleryRepository;
@@ -23,7 +27,7 @@ namespace AC.Suafigurinha.IO.Domain.Galleries.Commands
 
         public void Handle(InsertGalleryCommand message)
         {
-            var gallery = new Gallery(message.Name, message.Images);
+            var gallery = new Gallery(message.Name, message.IdImages);
 
             if (!gallery.IsValid())
             {
@@ -39,8 +43,61 @@ namespace AC.Suafigurinha.IO.Domain.Galleries.Commands
 
             if (Commit())
             {
-                _bus.RaiseEvent(new GalleryInsertedEvent(gallery.Id, gallery.Name, gallery.Images));
+                _bus.RaiseEvent(new GalleryInsertedEvent(gallery.Id, gallery.Name, gallery.IdImages));
             }
+        }
+
+        public void Handle(UpdateGalleryCommand message)
+        {
+            if (!GalleryExists(message.Id, message.MessageType)) return;
+
+            var gallery = Gallery.GalleryFactory.NewFullGallery(message.Id, message.Name, message.IdImages);
+
+            if (!gallery.IsValid())
+            {
+                AlertValidationsError(gallery.ValidationResult);
+                return;
+            }
+
+            // TODO:
+            // Validacoes de negocio!
+            // Usuário pode alterar?
+
+            _galleryRepository.Update(gallery);
+
+            if (Commit())
+            {
+                _bus.RaiseEvent(new GalleryUpdatedEvent(gallery.Id, gallery.Name, gallery.IdImages));
+            }
+        }
+
+        public void Handle(DeleteGalleryCommand message)
+        {
+            if (!GalleryExists(message.Id, message.MessageType)) return;
+
+            // TODO:
+            // Validacoes de negocio!
+            // Usuário pode excluir?
+
+            var currentGallery = _galleryRepository.GetById(message.Id);
+
+            currentGallery.GalleryDeleted();
+            _galleryRepository.Update(currentGallery);
+
+            if (Commit())
+            {
+                _bus.RaiseEvent(new GalleryDeletedEvent(message.Id));
+            }
+
+        }
+
+        private bool GalleryExists(Guid id, string messageType)
+        {
+            var gallery = _galleryRepository.GetById(id);
+            if (gallery != null) return true;
+
+            _bus.RaiseEvent(new DomainNotification(messageType, "Galeria inexistente"));
+            return false;
         }
     }
 }

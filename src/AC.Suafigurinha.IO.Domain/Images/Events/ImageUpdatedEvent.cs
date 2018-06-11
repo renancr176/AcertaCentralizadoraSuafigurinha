@@ -2,9 +2,9 @@
 
 namespace AC.Suafigurinha.IO.Domain.Images.Events
 {
-    public class ImageInsertedEvent : BaseImageEvent
+    public class ImageUpdatedEvent : BaseImageEvent
     {
-        public ImageInsertedEvent(Guid id, string url, int order, Guid? idGallery)
+        public ImageUpdatedEvent(Guid id, string url, int order, Guid? idGallery)
         {
             Id = id;
             Url = url;
