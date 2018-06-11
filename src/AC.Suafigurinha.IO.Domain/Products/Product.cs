@@ -51,5 +51,28 @@ namespace AC.Suafigurinha.IO.Domain.Products
             return ValidationResult.IsValid;
         }
         #endregion Validation
+
+        public static class ProductFactory
+        {
+            public static Product NewFullProduct(Guid id, string name, decimal price, int quantity, string shortDescription, string description, Guid? idImage, Guid? idGalery)
+            {
+                var product = new Product()
+                {
+                    Id = id,
+                    Name = name,
+                    Price = price,
+                    Quantity = quantity,
+                    ShortDescription = shortDescription,
+                    Description = description
+                };
+
+                if (idImage.HasValue)
+                    product.IdImage = idImage;
+                if (idGalery.HasValue)
+                    product.IdGalery = idGalery;
+
+                return product;
+            }
+        }
     }
 }

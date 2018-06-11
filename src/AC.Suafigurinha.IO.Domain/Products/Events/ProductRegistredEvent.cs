@@ -4,7 +4,7 @@ using AC.Suafigurinha.IO.Domain.Core.Events;
 
 namespace AC.Suafigurinha.IO.Domain.Products.Events
 {
-    class ProductRegistredEvent : Event
+    public class ProductRegistredEvent : Event
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }

@@ -3,7 +3,7 @@ using AC.Suafigurinha.IO.Domain.Core.Commands;
 
 namespace AC.Suafigurinha.IO.Domain.Products.Commands
 {
-    class RegisterProductCommand : Command
+    public class RegisterProductCommand : Command
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }
