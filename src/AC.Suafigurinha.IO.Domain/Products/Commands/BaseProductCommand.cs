@@ -14,5 +14,6 @@ namespace AC.Suafigurinha.IO.Domain.Products.Commands
         public string Description { get; protected set; }
         public Guid? IdImage { get; protected set; }
         public Guid? IdGalery { get; protected set; }
+        public Guid? IdCategory { get; protected set; }
     }
 }

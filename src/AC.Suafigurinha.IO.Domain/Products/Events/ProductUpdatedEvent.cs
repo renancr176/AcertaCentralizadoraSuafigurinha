@@ -4,7 +4,7 @@ namespace AC.Suafigurinha.IO.Domain.Products.Events
 {
     public class ProductUpdatedEvent : BaseProductEvent
     {
-        public ProductUpdatedEvent(Guid id, string name, decimal price, bool haveQuantity, int quantity, string shortDescription, string description, Guid? idImage, Guid? idGalery)
+        public ProductUpdatedEvent(Guid id, string name, decimal price, bool haveQuantity, int quantity, string shortDescription, string description, Guid? idImage, Guid? idGalery, Guid? idCategory)
         {
             Id = id;
             Name = name;
@@ -15,6 +15,7 @@ namespace AC.Suafigurinha.IO.Domain.Products.Events
             Description = description;
             IdImage = idImage;
             IdGalery = idGalery;
+            IdCategory = idCategory;
 
             AggregateId = id;
         }

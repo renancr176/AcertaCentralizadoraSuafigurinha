@@ -28,7 +28,7 @@ namespace AC.Suafigurinha.IO.Domain.Products.Commands
 
         public void Handle(InsertProductCommand message)
         {
-            var product = Product.ProductFactory.NewFullProduct(message.Id, message.Name, message.Price, message.Quantity, message.ShortDescription, message.Description, message.IdImage, message.IdGalery);
+            var product = Product.ProductFactory.NewFullProduct(message.Id, message.Name, message.Price, message.Quantity, message.ShortDescription, message.Description, message.IdImage, message.IdGalery, message.IdCategory);
 
             if (!product.IsValid())
             {
@@ -51,7 +51,7 @@ namespace AC.Suafigurinha.IO.Domain.Products.Commands
 
             if (Commit())
             {
-                _bus.RaiseEvent(new ProductInsertedEvent(product.Id, product.Name, product.Price, product.Quantity, product.ShortDescription, product.Description, product.IdImage, product.IdGalery));
+                _bus.RaiseEvent(new ProductInsertedEvent(product.Id, product.Name, product.Price, product.HaveQuantity, product.Quantity, product.ShortDescription, product.Description, product.IdImage, product.IdGalery, product.IdCategory));
             }
         }
 
@@ -59,7 +59,7 @@ namespace AC.Suafigurinha.IO.Domain.Products.Commands
         {
             if (!ProductExists(message.Id, message.MessageType)) return;
 
-            var product = Product.ProductFactory.NewFullProduct(message.Id, message.Name, message.Price, message.Quantity, message.ShortDescription, message.Description, message.IdImage, message.IdGalery);
+            var product = Product.ProductFactory.NewFullProduct(message.Id, message.Name, message.Price, message.Quantity, message.ShortDescription, message.Description, message.IdImage, message.IdGalery, message.IdCategory);
 
             if (!product.IsValid())
             {
@@ -75,7 +75,7 @@ namespace AC.Suafigurinha.IO.Domain.Products.Commands
 
             if (Commit())
             {
-                _bus.RaiseEvent(new ProductUpdatedEvent(product.Id, product.Name, product.Price, product.Quantity, product.ShortDescription, product.Description, product.IdImage, product.IdGalery));
+                _bus.RaiseEvent(new ProductUpdatedEvent(product.Id, product.Name, product.Price, product.HaveQuantity, product.Quantity, product.ShortDescription, product.Description, product.IdImage, product.IdGalery, product.IdCategory));
             }
         }
 

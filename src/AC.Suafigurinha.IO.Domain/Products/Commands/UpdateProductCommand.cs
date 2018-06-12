@@ -4,7 +4,7 @@ namespace AC.Suafigurinha.IO.Domain.Products.Commands
 {
     public class UpdateProductCommand : BaseProductCommand
     {
-        public UpdateProductCommand(Guid id, string name, decimal price, bool haveQuantity, int quantity, string shortDescription, string description, Guid? idImage, Guid? idGalery)
+        public UpdateProductCommand(Guid id, string name, decimal price, bool haveQuantity, int quantity, string shortDescription, string description, Guid? idImage, Guid? idGalery, Guid? idCategory)
         {
             Id = id;
             Name = name;
@@ -15,6 +15,7 @@ namespace AC.Suafigurinha.IO.Domain.Products.Commands
             Description = description;
             IdImage = idImage;
             IdGalery = idGalery;
+            IdCategory = idCategory;
         }
     }
 }

@@ -16,13 +16,14 @@ namespace AC.Suafigurinha.IO.Domain.Products
         public string Description { get; private set; }
         public Guid? IdImage { get; private set; }
         public Guid? IdGalery { get; private set; }
+        public Guid? IdCategory { get; private set; }
         public bool Deleted { get; private set; }
 
         // EF propriedades de navegacao
         public virtual Image ThumbNail { get; private set; }
         public virtual Gallery Gallery { get; private set; }
 
-        public Product(string name, decimal price, int quantity, string shortDescription, string description, Guid? idImage, Guid? idGallery)
+        public Product(string name, decimal price, int quantity, string shortDescription, string description, Guid? idImage, Guid? idGallery, Guid? idCategory)
         {
             Id = Guid.NewGuid();
             Name = name;
@@ -32,6 +33,7 @@ namespace AC.Suafigurinha.IO.Domain.Products
             Description = description;
             IdImage = idImage;
             IdGalery = idGallery;
+            IdCategory = idCategory;
             Deleted = false;
         }
 
@@ -120,7 +122,7 @@ namespace AC.Suafigurinha.IO.Domain.Products
 
         public static class ProductFactory
         {
-            public static Product NewFullProduct(Guid id, string name, decimal price, int quantity, string shortDescription, string description, Guid? idImage, Guid? idGalery)
+            public static Product NewFullProduct(Guid id, string name, decimal price, int quantity, string shortDescription, string description, Guid? idImage, Guid? idGalery, Guid? idCategory)
             {
                 var product = new Product()
                 {
@@ -136,6 +138,8 @@ namespace AC.Suafigurinha.IO.Domain.Products
                     product.IdImage = idImage;
                 if (idGalery.HasValue)
                     product.IdGalery = idGalery;
+                if (idCategory.HasValue)
+                    product.IdCategory = idCategory;
 
                 return product;
             }
