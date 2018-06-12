@@ -41,5 +41,19 @@ namespace AC.Suafigurinha.IO.Domain.Categories
                 .MaximumLength(255).WithMessage("O nome do produto deve ter até 255 caracteres.");
         }
         #endregion Validations
+
+        public static class CategoryFactory
+        {
+            public static Category NewFullCategory(Guid id, string name)
+            {
+                var category = new Category()
+                {
+                    Id = id,
+                    Name = name
+                };
+
+                return category;
+            }
+        }
     }
 }
