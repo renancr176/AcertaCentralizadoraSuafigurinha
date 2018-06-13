@@ -14,7 +14,7 @@ namespace AC.Suafigurinha.IO.Domain.Galleries
         public bool Deleted { get; private set; }
 
         // EF propriedades de navegacao
-        public virtual List<Image> Images { get; private set; }
+        public virtual ICollection<Image> Images { get; private set; }
 
         public Gallery(string name, IEnumerable<Guid?> idImages)
         {

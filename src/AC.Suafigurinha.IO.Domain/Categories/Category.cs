@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using AC.Suafigurinha.IO.Domain.Core.Models;
+using AC.Suafigurinha.IO.Domain.Products;
 using FluentValidation;
 
 namespace AC.Suafigurinha.IO.Domain.Categories
@@ -7,7 +9,11 @@ namespace AC.Suafigurinha.IO.Domain.Categories
     public class Category : Entity<Category>
     {
         public string Name { get; private set; }
+        public ICollection<Guid?> IdProducts { get; private set; }
         public bool Deleted { get; private set; }
+
+        // EF propriedades de navegacao
+        public virtual ICollection<Product> Products { get; private set; }
 
         public Category(string name)
         {

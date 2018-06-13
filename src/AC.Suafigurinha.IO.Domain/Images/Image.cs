@@ -1,5 +1,6 @@
 ﻿using System;
 using AC.Suafigurinha.IO.Domain.Core.Models;
+using AC.Suafigurinha.IO.Domain.Galleries;
 using FluentValidation;
 
 namespace AC.Suafigurinha.IO.Domain.Images
@@ -10,6 +11,9 @@ namespace AC.Suafigurinha.IO.Domain.Images
         public int Order { get; private set; }
         public Guid? IdGallery { get; private set; }
         public bool Deleted { get; private set; }
+
+        // EF propriedades de navegacao
+        public virtual Gallery Gallery { get; private set; }
 
         public Image(string url, int order)
         {

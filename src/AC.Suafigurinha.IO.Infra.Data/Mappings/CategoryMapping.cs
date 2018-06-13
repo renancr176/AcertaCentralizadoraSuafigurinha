@@ -1,0 +1,20 @@
+﻿using AC.Suafigurinha.IO.Domain.Categories;
+using AC.Suafigurinha.IO.Infra.Data.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace AC.Suafigurinha.IO.Infra.Data.Mappings
+{
+    public class CategoryMapping : EntityTypeConfiguration<Category>
+    {
+        public override void Map(EntityTypeBuilder<Category> builder)
+        {
+            builder.Property(c => c.Name)
+                .HasColumnType("VARCHAR(100)")
+                .IsRequired();
+
+            builder.HasMany(c => c.Products)
+                .WithOne(p => p.Category);
+        }
+    }
+}

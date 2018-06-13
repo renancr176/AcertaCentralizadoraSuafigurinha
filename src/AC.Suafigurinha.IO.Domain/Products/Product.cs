@@ -3,6 +3,7 @@ using FluentValidation;
 using AC.Suafigurinha.IO.Domain.Core.Models;
 using AC.Suafigurinha.IO.Domain.Galleries;
 using AC.Suafigurinha.IO.Domain.Images;
+using AC.Suafigurinha.IO.Domain.Categories;
 
 namespace AC.Suafigurinha.IO.Domain.Products
 {
@@ -22,6 +23,7 @@ namespace AC.Suafigurinha.IO.Domain.Products
         // EF propriedades de navegacao
         public virtual Image ThumbNail { get; private set; }
         public virtual Gallery Gallery { get; private set; }
+        public virtual Category Category { get; private set; }
 
         public Product(string name, decimal price, int quantity, string shortDescription, string description, Guid? idImage, Guid? idGallery, Guid? idCategory)
         {
