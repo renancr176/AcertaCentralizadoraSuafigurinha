@@ -17,6 +17,10 @@ namespace AC.Suafigurinha.IO.Infra.Data.Mappings
                 .WithOne(i => i.Gallery)
                 .IsRequired();
 
+            builder.HasOne(g => g.Product)
+                .WithOne(p => p.Gallery)
+                .IsRequired(false);
+
             builder.Ignore(g => g.ValidationResult);
 
             builder.Ignore(g => g.CascadeMode);

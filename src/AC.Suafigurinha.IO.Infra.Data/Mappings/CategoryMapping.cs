@@ -13,8 +13,18 @@ namespace AC.Suafigurinha.IO.Infra.Data.Mappings
                 .HasColumnType("VARCHAR(100)")
                 .IsRequired();
 
+            builder.Property(c => c.Deleted)
+                .HasDefaultValue(false);
+
             builder.HasMany(c => c.Products)
-                .WithOne(p => p.Category);
+                .WithOne(p => p.Category)
+                .IsRequired(false);
+
+            builder.Ignore(c => c.ValidationResult);
+
+            builder.Ignore(c => c.CascadeMode);
+
+            builder.ToTable("Categories");
         }
     }
 }

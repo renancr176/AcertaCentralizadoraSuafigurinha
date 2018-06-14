@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AC.Suafigurinha.IO.Domain.Core.Models;
 using AC.Suafigurinha.IO.Domain.Images;
+using AC.Suafigurinha.IO.Domain.Products;
 using FluentValidation;
 
 namespace AC.Suafigurinha.IO.Domain.Galleries
@@ -15,6 +16,7 @@ namespace AC.Suafigurinha.IO.Domain.Galleries
 
         // EF propriedades de navegacao
         public virtual ICollection<Image> Images { get; private set; }
+        public virtual Product Product { get; private set; }
 
         public Gallery(string name, IEnumerable<Guid?> idImages)
         {

@@ -9,7 +9,6 @@ namespace AC.Suafigurinha.IO.Domain.Categories
     public class Category : Entity<Category>
     {
         public string Name { get; private set; }
-        public ICollection<Guid?> IdProducts { get; private set; }
         public bool Deleted { get; private set; }
 
         // EF propriedades de navegacao

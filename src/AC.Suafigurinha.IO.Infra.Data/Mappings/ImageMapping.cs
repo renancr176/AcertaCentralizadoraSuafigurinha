@@ -17,11 +17,15 @@ namespace AC.Suafigurinha.IO.Infra.Data.Mappings
                 .HasDefaultValue(0);
 
             builder.Property(i => i.Deleted)
-                .HasDefaultValue(0);
+                .HasDefaultValue(false);
 
             builder.HasOne(i => i.Gallery)
                 .WithMany(g => g.Images)
                 .HasForeignKey(i => i.IdGallery)
+                .IsRequired(false);
+
+            builder.HasOne(i => i.Product)
+                .WithOne(p => p.ThumbNail)
                 .IsRequired(false);
 
             builder.Ignore(i => i.ValidationResult);
