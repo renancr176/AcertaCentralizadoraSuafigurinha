@@ -10,6 +10,10 @@ namespace AC.Suafigurinha.IO.Infra.Data.Mappings
     {
         public override void Map(EntityTypeBuilder<Product> builder)
         {
+            builder.Property(p => p.Id)
+               .HasColumnName("IdProduct")
+               .IsRequired();
+
             builder.Property(p => p.Name)
                 .HasColumnType("VARCHAR(100)")
                 .IsRequired();

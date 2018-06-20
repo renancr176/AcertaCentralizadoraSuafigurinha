@@ -6,9 +6,9 @@ namespace AC.Suafigurinha.IO.Infra.Data.UoW
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly SuafigurinhaContext _context;
+        private readonly ApplicationContext _context;
 
-        public UnitOfWork(SuafigurinhaContext context)
+        public UnitOfWork(ApplicationContext context)
         {
             _context = context;
         }

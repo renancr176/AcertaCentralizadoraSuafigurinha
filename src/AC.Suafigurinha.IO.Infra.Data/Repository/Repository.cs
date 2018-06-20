@@ -11,10 +11,10 @@ namespace AC.Suafigurinha.IO.Infra.Data.Repository
 {
     public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity<TEntity>
     {
-        protected SuafigurinhaContext Db;
+        protected ApplicationContext Db;
         protected DbSet<TEntity> DbSet;
 
-        protected Repository(SuafigurinhaContext context)
+        protected Repository(ApplicationContext context)
         {
             Db = context;
             DbSet = Db.Set<TEntity>();

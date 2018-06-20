@@ -9,6 +9,10 @@ namespace AC.Suafigurinha.IO.Infra.Data.Mappings
     {
         public override void Map(EntityTypeBuilder<Gallery> builder)
         {
+            builder.Property(g => g.Id)
+               .HasColumnName("IdGallery")
+               .IsRequired();
+
             builder.Property(g => g.Name)
                 .HasColumnType("VARCHAR(100)")
                 .IsRequired();

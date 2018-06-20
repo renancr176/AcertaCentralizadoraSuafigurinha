@@ -6,7 +6,7 @@ using AC.Suafigurinha.IO.Infra.Data.Extensions;
 
 namespace AC.Suafigurinha.IO.Infra.Data.Context
 {
-    public class SuafigurinhaContext : DbContext
+    public class ApplicationContext : DbContext
     {
         //public DbSet<Evento> Eventos { get; set; }
 
